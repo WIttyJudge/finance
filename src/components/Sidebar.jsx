@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Layout } from "antd";
 import {
-  UploadOutlined,
+  ClockCircleOutlined,
   UserOutlined,
-  VideoCameraOutlined
+  BarChartOutlined,
+  PlusSquareOutlined
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
@@ -40,31 +41,31 @@ class Sidebar extends Component {
           <Menu.Item key="1">
             <Link to="/bill">
               <UserOutlined />
-              <span className="nav-text">Счет</span>
+              <span>Счет</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="2">
             <Link to="/history">
-              <VideoCameraOutlined />
-              <span className="nav-text">История</span>
+              <BarChartOutlined />
+              <span>История</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="3">
             <Link to="/planning">
-              <UploadOutlined />
-              <span className="nav-text">Планирование</span>
+              <ClockCircleOutlined />
+              <span>Планирование</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="4">
             <Link to="/record">
-              <UserOutlined />
-              <span className="nav-text">Новая запись</span>
+              <PlusSquareOutlined />
+              <span>Новая запись</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="5">
             <Link to="/categories">
               <UserOutlined />
-              <span className="nav-text">Категории</span>
+              <span>Категории</span>
             </Link>
           </Menu.Item>
         </Menu>
