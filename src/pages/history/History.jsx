@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PieGraph from "../../components/Page/PieGraph";
 import { Typography, Table, Divider, Tag } from "antd";
 const { Title } = Typography;
 
@@ -141,6 +142,7 @@ class History extends Component {
       <div>
         <Title>История записей</Title>
         <Divider style={{ backgroundColor: "white" }} />
+        <PieGraph></PieGraph>
         <Table
           columns={columns}
           dataSource={data}

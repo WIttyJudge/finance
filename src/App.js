@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Sidebar from "./components/Sidebar";
-import Bill from "./pages/Bill";
-import History from "./pages/History";
-import Planning from "./pages/Planning";
-import Record from "./pages/Record";
-import Category from "./pages/Category";
+import Sidebar from "./components/Layout/Sidebar";
+import Bill from "./pages/bill/Bill";
+import History from "./pages/history/History";
+import Planning from "./pages/planning/Planning";
+import Record from "./pages/record/Record";
+import Category from "./pages/category/Category";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Layout } from "antd";
 
@@ -24,21 +24,11 @@ class App extends Component {
               <Layout>
                 <Content style={{ padding: "30px" }}>
                   <Switch>
-                    <Route path="/bill">
-                      <Bill />
-                    </Route>
-                    <Route path="/history">
-                      <History />
-                    </Route>
-                    <Route path="/planning">
-                      <Planning />
-                    </Route>
-                    <Route path="/record">
-                      <Record />
-                    </Route>
-                    <Route path="/categories">
-                      <Category />
-                    </Route>
+                    <Route path="/bill" component={Bill} />
+                    <Route path="/history" component={History} />
+                    <Route path="/planning" component={Planning} />
+                    <Route path="/record" component={Record} />
+                    <Route path="/categories" component={Category} />
                   </Switch>
                 </Content>
                 <Footer style={{ textAlign: "center" }}>Footer</Footer>

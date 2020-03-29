@@ -7,7 +7,7 @@ import {
   PlusSquareOutlined
 } from "@ant-design/icons";
 import { Menu } from "antd";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const { Sider } = Layout;
 
@@ -32,41 +32,38 @@ class Sidebar extends Component {
         collapsible
         collapsed={this.state.collapsed}
         onCollapse={this.onCollapse}
+        width={"250px"}
       >
-        <Menu
-          theme={this.state.theme}
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-        >
+        <Menu theme={this.state.theme} mode="inline" selectedKeys={["1"]}>
           <Menu.Item key="1">
-            <Link to="/bill">
+            <NavLink to="/bill">
               <UserOutlined />
               <span>Счет</span>
-            </Link>
+            </NavLink>
           </Menu.Item>
           <Menu.Item key="2">
-            <Link to="/history">
+            <NavLink to="/history">
               <BarChartOutlined />
               <span>История</span>
-            </Link>
+            </NavLink>
           </Menu.Item>
           <Menu.Item key="3">
-            <Link to="/planning">
+            <NavLink to="/planning">
               <ClockCircleOutlined />
               <span>Планирование</span>
-            </Link>
+            </NavLink>
           </Menu.Item>
           <Menu.Item key="4">
-            <Link to="/record">
+            <NavLink to="/record">
               <PlusSquareOutlined />
               <span>Новая запись</span>
-            </Link>
+            </NavLink>
           </Menu.Item>
           <Menu.Item key="5">
-            <Link to="/categories">
+            <NavLink to="/categories">
               <UserOutlined />
               <span>Категории</span>
-            </Link>
+            </NavLink>
           </Menu.Item>
         </Menu>
       </Sider>
