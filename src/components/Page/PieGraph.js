@@ -13,7 +13,11 @@ const data = {
 };
 
 const PieGraph = props => {
-  return <Pie data={data} width={150} height={50}></Pie>;
+  return (
+    <div>
+      <Pie data={data} width={150} height={50} />
+    </div>
+  );
 };
 
 export default PieGraph;
