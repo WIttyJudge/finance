@@ -7,7 +7,6 @@ import Record from "./pages/record/Record";
 import Category from "./pages/category/Category";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Layout } from "antd";
-
 const { Header, Footer, Content } = Layout;
 
 class App extends Component {
@@ -15,14 +14,17 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Layout style={{ minHeight: "100vh" }}>
-            <Header style={{ backgroundColor: "#001529" }}>
-              <p style={{ color: "white" }}>header</p>
+          <Layout className="main-page">
+            <Header className="header">
+              <div className="header__body">
+                <p className="header__logo">logo</p>
+                <p className="header__text">Name</p>
+              </div>
             </Header>
             <Layout>
               <Sidebar />
               <Layout>
-                <Content style={{ padding: "30px" }}>
+                <Content className="content__body">
                   <Switch>
                     <Route path="/bill" component={Bill} />
                     <Route path="/history" component={History} />
@@ -31,7 +33,7 @@ class App extends Component {
                     <Route path="/categories" component={Category} />
                   </Switch>
                 </Content>
-                <Footer style={{ textAlign: "center" }}>Footer</Footer>
+                <Footer className="footer">Footer</Footer>
               </Layout>
             </Layout>
           </Layout>

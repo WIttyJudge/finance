@@ -1,0 +1,40 @@
+.main-page {
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #001529;
+
+  &__body {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    text-transform: uppercase;
+    color: white;
+    font-size: 20px;
+  }
+
+  &__text {
+    color: white;
+  }
+}
+
+.content {
+  &__body {
+    padding: 30px;
+  }
+
+  &__divider {
+    background-color: white;
+  }
+
+  &__chart {
+    margin-bottom: 30px;
+  }
+}
+
+.footer {
+  text-align: center;
+}

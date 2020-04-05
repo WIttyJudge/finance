@@ -4,8 +4,8 @@ import {
   ClockCircleOutlined,
   UserOutlined,
   BarChartOutlined,
-  PlusSquareOutlined
-} from "@ant-design/icons";
+  PlusSquareOutlined,
+} from "@ant-design/icons-svg";
 import { Menu } from "antd";
 import { NavLink, withRouter } from "react-router-dom";
 
@@ -17,11 +17,11 @@ class Sidebar extends Component {
 
     this.state = {
       collapsed: false,
-      theme: "light"
+      theme: "light",
     };
   }
 
-  onCollapse = collapsed => {
+  onCollapse = (collapsed) => {
     this.setState({ collapsed });
   };
 
@@ -45,31 +45,31 @@ class Sidebar extends Component {
         >
           <Menu.Item key="/bill">
             <NavLink to="/bill">
-              <UserOutlined />
+              {/* <UserOutlined /> */}
               <span>Счет</span>
             </NavLink>
           </Menu.Item>
           <Menu.Item key="/history">
             <NavLink to="/history">
-              <BarChartOutlined />
+              {/* <BarChartOutlined /> */}
               <span>История</span>
             </NavLink>
           </Menu.Item>
           <Menu.Item key="/planning">
             <NavLink to="/planning">
-              <ClockCircleOutlined />
+              {/* <ClockCircleOutlined /> */}
               <span>Планирование</span>
             </NavLink>
           </Menu.Item>
           <Menu.Item key="/record">
             <NavLink to="/record">
-              <PlusSquareOutlined />
+              {/* <PlusSquareOutlined /> */}
               <span>Новая запись</span>
             </NavLink>
           </Menu.Item>
           <Menu.Item key="/categories">
             <NavLink to="/categories">
-              <UserOutlined />
+              {/* <UserOutlined /> */}
               <span>Категории</span>
             </NavLink>
           </Menu.Item>

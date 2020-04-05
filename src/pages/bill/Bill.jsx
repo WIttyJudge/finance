@@ -6,34 +6,34 @@ const { Title } = Typography;
 const columns = [
   {
     title: "Валюта",
-    dataIndex: "currency"
+    dataIndex: "currency",
   },
   {
     title: "Курс",
-    dataIndex: "rate"
+    dataIndex: "rate",
   },
   {
     title: "Дата",
-    dataIndex: "date"
-  }
+    dataIndex: "date",
+  },
 ];
 
 const dataSource = [
   {
     currency: "RUB",
     rate: "1000",
-    date: "2020-05-12 13:50:00"
+    date: "2020-05-12 13:50:00",
   },
   {
     currency: "USD",
     rate: "2000",
-    date: "2020-05-12 13:50:00"
+    date: "2020-05-12 13:50:00",
   },
   {
     currency: "EUR",
     rate: "3000",
-    date: "2020-05-12 13:50:00"
-  }
+    date: "2020-05-12 13:50:00",
+  },
 ];
 
 class Bill extends Component {
@@ -41,7 +41,7 @@ class Bill extends Component {
     return (
       <div>
         <Title>Счет</Title>
-        <Divider style={{ backgroundColor: "white" }}></Divider>
+        <Divider className="content__divider" />
 
         <Row between="xs">
           <Col xs={5}>

@@ -11,20 +11,20 @@ const columns = [
     sortDirections: ["descend", "ascend"],
     sorter: (a, b) => a.amount - b.amount,
     align: "center",
-    width: 150
+    width: 150,
   },
   {
     title: "Дата",
-    dataIndex: "date",
+    dataIndex: "created_at",
     defaultSortOrder: "descend",
     sortDirections: ["descend", "ascend"],
-    sorter: (a, b) => new Date(a.date) - new Date(b.date),
-    align: "center"
+    sorter: (a, b) => new Date(a.created_at) - new Date(b.created_at),
+    align: "center",
   },
   {
     title: "Категория",
     dataIndex: "category",
-    align: "center"
+    align: "center",
   },
   {
     title: "Тип",
@@ -32,24 +32,24 @@ const columns = [
     filters: [
       {
         text: "Доход",
-        value: "Доход"
+        value: "Доход",
       },
       {
         text: "Расход",
-        value: "Расход"
-      }
+        value: "Расход",
+      },
     ],
     filterMultiple: false,
     onFilter: (value, record) => record.type.indexOf(value) === 0,
     align: "center",
-    render: type => {
+    render: (type) => {
       let color;
       if (type === "Расход") color = "#f50";
       if (type === "Доход") color = "#29f";
 
       return <Tag color={color}>{type}</Tag>;
-    }
-  }
+    },
+  },
 ];
 
 // const data = [
@@ -66,7 +66,7 @@ const locale = {
   filterTitle: "test1",
   filterConfirm: "Ок",
   filterReset: "Вернуть",
-  emptyText: "Empty"
+  emptyText: "Empty",
 };
 
 class History extends Component {
@@ -75,18 +75,23 @@ class History extends Component {
 
     this.state = {
       financeRecords: [],
-      loading: true
+      loading: true,
     };
   }
 
   componentDidMount = () => {
-    fetch("http://localhost:3333/finance")
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          financeRecords: json,
-          loading: false
-        });
+    fetch("http://localhost:8080/api/record")
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState(
+          {
+            financeRecords: json,
+            loading: false,
+          },
+          () => {
+            console.log(json);
+          }
+        );
       });
   };
 
@@ -96,8 +101,10 @@ class History extends Component {
     return (
       <div>
         <Title>История записей</Title>
-        <Divider style={{ backgroundColor: "white" }} />
-        <PieGraph />
+        <Divider className="content__divider" />
+        <div className="content__chart">
+          <PieGraph />
+        </div>
         <Table
           columns={columns}
           dataSource={financeRecords}
