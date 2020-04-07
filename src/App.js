@@ -5,7 +5,12 @@ import History from "./pages/history/History";
 import Planning from "./pages/planning/Planning";
 import Record from "./pages/record/Record";
 import Category from "./pages/category/Category";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { Layout } from "antd";
 const { Header, Footer, Content } = Layout;
 
@@ -31,6 +36,10 @@ class App extends Component {
                     <Route path="/planning" component={Planning} />
                     <Route path="/record" component={Record} />
                     <Route path="/categories" component={Category} />
+
+                    <Route path="*">
+                      <h1>No Match</h1>
+                    </Route>
                   </Switch>
                 </Content>
                 <Footer className="footer">Footer</Footer>
