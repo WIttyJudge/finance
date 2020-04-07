@@ -6,25 +6,25 @@ const { Title } = Typography;
 const columns = [
   {
     title: "Сумма",
-    dataIndex: "count",
+    dataIndex: "amount",
     // defaultSortOrder: "descend",
     sortDirections: ["descend", "ascend"],
-    sorter: (a, b) => a.count - b.count,
+    sorter: (a, b) => a.amount - b.amount,
     align: "center",
-    width: 150
+    width: 150,
   },
   {
     title: "Дата",
-    dataIndex: "date",
+    dataIndex: "created_at",
     defaultSortOrder: "descend",
     sortDirections: ["descend", "ascend"],
-    sorter: (a, b) => new Date(a.date) - new Date(b.date),
-    align: "center"
+    sorter: (a, b) => new Date(a.created_at) - new Date(b.created_at),
+    align: "center",
   },
   {
     title: "Категория",
     dataIndex: "category",
-    align: "center"
+    align: "center",
   },
   {
     title: "Тип",
@@ -32,121 +32,85 @@ const columns = [
     filters: [
       {
         text: "Доход",
-        value: "Доход"
+        value: "Доход",
       },
       {
         text: "Расход",
-        value: "Расход"
-      }
+        value: "Расход",
+      },
     ],
     filterMultiple: false,
     onFilter: (value, record) => record.type.indexOf(value) === 0,
     align: "center",
-    render: type => {
+    render: (type) => {
       let color;
       if (type === "Расход") color = "#f50";
       if (type === "Доход") color = "#29f";
 
       return <Tag color={color}>{type}</Tag>;
-    }
-  }
+    },
+  },
 ];
 
-const data = [
-  {
-    key: 1,
-    category: "Работа",
-    date: "2014-12-24 20:20:00",
-    count: 100,
-    type: "Расход"
-  },
-  {
-    key: 2,
-    category: "Еда",
-    date: "2014-11-27 17:13:00",
-    count: 200,
-    type: "Доход"
-  },
-  {
-    key: 3,
-    category: "Работа",
-    date: "2016-12-25 13:35:00",
-    count: 15,
-    type: "Доход"
-  },
-  {
-    key: 5,
-    category: "Работа",
-    date: "2020-12-25 17:35:12",
-    count: 5000,
-    type: "Расход"
-  },
-  {
-    key: 6,
-    category: "Работа",
-    date: "2020-12-25 17:35:12",
-    count: 5000,
-    type: "Расход"
-  },
-  {
-    key: 7,
-    category: "Работа",
-    date: "2020-12-25 17:35:12",
-    count: 5000,
-    type: "Доход"
-  },
-  {
-    key: 8,
-    category: "Работа",
-    date: "2020-12-25 17:35:12",
-    count: 5000,
-    type: "Доход"
-  },
-  {
-    key: 9,
-    category: "Работа",
-    date: "2020-12-25 17:35:12",
-    count: 5000,
-    type: "Расход"
-  },
-  {
-    key: 10,
-    category: "Работа",
-    date: "2020-12-25 17:35:12",
-    count: 5000,
-    type: "Доход"
-  },
-  {
-    key: 11,
-    category: "Работа",
-    date: "2020-12-25 17:35:12",
-    count: 5055500,
-    type: "Доход"
-  },
-  {
-    key: 12,
-    category: "Работа",
-    date: "2010-12-25 17:35:12",
-    count: 5000,
-    type: "Доход"
-  }
-];
+// const data = [
+//   {
+//     key: 1,
+//     category: "Работа",
+//     date: "2014-12-24 20:20:00",
+//     amount: 100,
+//     type: "Расход"
+//   }
+// ];
+
+const locale = {
+  filterTitle: "test1",
+  filterConfirm: "Ок",
+  filterReset: "Вернуть",
+  emptyText: "Empty",
+};
 
 class History extends Component {
-  onChange = (pagination, filters, sorter, extra) => {
-    console.log("params", pagination, filters, sorter, extra);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      financeRecords: [],
+      loading: true,
+    };
+  }
+
+  componentDidMount = () => {
+    fetch("http://localhost:8080/api/record")
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState(
+          {
+            financeRecords: json,
+            loading: false,
+          },
+          () => {
+            console.log(json);
+          }
+        );
+      });
   };
 
   render() {
+    const { financeRecords, loading } = this.state;
+
     return (
       <div>
         <Title>История записей</Title>
-        <Divider style={{ backgroundColor: "white" }} />
-        <PieGraph></PieGraph>
+        <Divider className="content__divider" />
+        <div className="content__chart">
+          <PieGraph />
+        </div>
         <Table
           columns={columns}
-          dataSource={data}
+          dataSource={financeRecords}
           onChange={this.onChange}
+          locale={locale}
+          loading={loading}
           bordered
         />
       </div>

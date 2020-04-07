@@ -4,10 +4,10 @@ import {
   ClockCircleOutlined,
   UserOutlined,
   BarChartOutlined,
-  PlusSquareOutlined
-} from "@ant-design/icons";
+  PlusSquareOutlined,
+} from "@ant-design/icons-svg";
 import { Menu } from "antd";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 
 const { Sider } = Layout;
 
@@ -17,51 +17,59 @@ class Sidebar extends Component {
 
     this.state = {
       collapsed: false,
-      theme: "light"
+      theme: "light",
     };
   }
 
-  onCollapse = collapsed => {
+  onCollapse = (collapsed) => {
     this.setState({ collapsed });
   };
 
   render() {
+    const { location } = this.props;
+    const { collapsed, theme } = this.state;
+
     return (
       <Sider
-        theme={this.state.theme}
+        theme={theme}
         collapsible
-        collapsed={this.state.collapsed}
+        collapsed={collapsed}
         onCollapse={this.onCollapse}
         width={"250px"}
       >
-        <Menu theme={this.state.theme} mode="inline" selectedKeys={["1"]}>
-          <Menu.Item key="1">
+        <Menu
+          theme={this.state.theme}
+          mode="inline"
+          defaultSelectedKey={["/bill"]}
+          selectedKeys={[location.pathname.toString()]}
+        >
+          <Menu.Item key="/bill">
             <NavLink to="/bill">
-              <UserOutlined />
+              {/* <UserOutlined /> */}
               <span>Счет</span>
             </NavLink>
           </Menu.Item>
-          <Menu.Item key="2">
+          <Menu.Item key="/history">
             <NavLink to="/history">
-              <BarChartOutlined />
+              {/* <BarChartOutlined /> */}
               <span>История</span>
             </NavLink>
           </Menu.Item>
-          <Menu.Item key="3">
+          <Menu.Item key="/planning">
             <NavLink to="/planning">
-              <ClockCircleOutlined />
+              {/* <ClockCircleOutlined /> */}
               <span>Планирование</span>
             </NavLink>
           </Menu.Item>
-          <Menu.Item key="4">
+          <Menu.Item key="/record">
             <NavLink to="/record">
-              <PlusSquareOutlined />
+              {/* <PlusSquareOutlined /> */}
               <span>Новая запись</span>
             </NavLink>
           </Menu.Item>
-          <Menu.Item key="5">
+          <Menu.Item key="/categories">
             <NavLink to="/categories">
-              <UserOutlined />
+              {/* <UserOutlined /> */}
               <span>Категории</span>
             </NavLink>
           </Menu.Item>
@@ -71,4 +79,4 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);
